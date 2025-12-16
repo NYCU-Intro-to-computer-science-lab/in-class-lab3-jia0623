@@ -1,16 +1,17 @@
 #include <iostream>
 using namespace std;
+void printIndent(int depth) {
+    if (depth == 0) return;
+    cout << "|--";
+    printIndent(depth - 1);
+}
 
 int fib(int n, int depth) {
-    for (int i = 0; i < depth; i++) {
-        cout << "|--";
-    }
+    printIndent(depth);
     cout << "SEARCH fib(" << n << ")" << endl;
 
     if (n == 1 || n == 2) {
-        for (int i = 0; i < depth; i++) {
-            cout << "|--";
-        }
+        printIndent(depth);
         cout << "GET fib(" << n << ") = 1" << endl;
         return 1;
     }
@@ -19,9 +20,7 @@ int fib(int n, int depth) {
     int b = fib(n - 2, depth + 1);
     int result = a + b;
 
-    for (int i = 0; i < depth; i++) {
-        cout << "|--";
-    }
+    printIndent(depth);
     cout << "GET fib(" << n << ") = " << result << endl;
 
     return result;
@@ -36,4 +35,3 @@ int main() {
 
     return 0;
 }
-
